@@ -1,4 +1,4 @@
-package com.fundamentosplatzi.springboot.fundamentos.controller;
+package com.fundamentosplatzi.springboot.fundamentos.component;
 
 import org.springframework.stereotype.Component;
 
