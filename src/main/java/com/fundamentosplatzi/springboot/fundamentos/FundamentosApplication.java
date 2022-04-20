@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.domain.Sort;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -54,6 +55,17 @@ private final Log LOGGER= LogFactory.getLog(FundamentosApplication.class);
 	public void run(String... args) throws Exception {
     //ejemplosAnteriores();
     saveUsersInDataBase();
+		getInformationJpqlFromUser();
+		myBean.
+
+	}
+	private void getInformationJpqlFromUser(){
+	LOGGER.info("USUARIO CON EL METODO FINDBYUSEREMAIL: " +
+			userRepository.findByUserEmail("john@domain.com")
+					.orElseThrow(()-> new RuntimeException("NO SE ENCONTRO EL USUARIO")));
+
+	userRepository.findAndSort("Lui", Sort.by("id").descending()).stream()
+			.forEach(user -> LOGGER.info("User con metodo sort: "+user));
 
 	}
 	private void saveUsersInDataBase(){
