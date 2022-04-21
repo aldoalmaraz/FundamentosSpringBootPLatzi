@@ -56,20 +56,42 @@ private final Log LOGGER= LogFactory.getLog(FundamentosApplication.class);
     //ejemplosAnteriores();
     saveUsersInDataBase();
 		getInformationJpqlFromUser();
-		myBean.
+
 
 	}
 	private void getInformationJpqlFromUser(){
-	LOGGER.info("USUARIO CON EL METODO FINDBYUSEREMAIL: " +
+	/*LOGGER.info("USUARIO CON EL METODO FINDBYUSEREMAIL: " +
 			userRepository.findByUserEmail("john@domain.com")
 					.orElseThrow(()-> new RuntimeException("NO SE ENCONTRO EL USUARIO")));
 
 	userRepository.findAndSort("Lui", Sort.by("id").descending()).stream()
 			.forEach(user -> LOGGER.info("User con metodo sort: "+user));
 
+	userRepository.findByName("Marco").stream()
+			.forEach(user -> LOGGER.info("USUARIO CON QUERY METHOD "+ user));
+
+	LOGGER.info("Usuario con query method FindMyEmailAndName "+ userRepository.findByEmailAndName("daniela@domain.com", "Daniela").orElseThrow(()-> new RuntimeException("USUARIO NO ENCONTRADO")));
+
+	userRepository.findByNameLike("%M%").stream()
+				.forEach(user -> LOGGER.info("USUARIO FINDMYNAMELIKE:  "+ user));
+
+		userRepository.findByNameOrEmail(null,"marisol@domain.com").stream()
+				.forEach(user -> LOGGER.info("USUARIO FINDMYNAMELIKEOREMAIL:  "+ user));
+*/
+	userRepository.findBybirthdateBetween(LocalDate.of(2021,3,2),LocalDate.of(2021,10,2)).stream()
+			.forEach(user -> LOGGER.info("USUARIO ENTRE FECHAS: "+user));
+
+		userRepository.findByNameLikeOrderByIdDesc("%Marco%").stream()
+				.forEach(user -> LOGGER.info("USUARIO ENCONTRADO CON LIKE Y ORDENADO: "+user));
+
+
+
 	}
+
+
+
 	private void saveUsersInDataBase(){
-		User user1 = new User("John", "john@domain.com", LocalDate.of(2021, 3, 13));
+		User user1 = new User("Marco", "john@domain.com", LocalDate.of(2021, 3, 13));
 		User user2 = new User("Marco", "marco@domain.com", LocalDate.of(2021, 12, 8));
 		User user3 = new User("Daniela", "daniela@domain.com", LocalDate.of(2021, 9, 8));
 		User user4 = new User("Marisol", "marisol@domain.com", LocalDate.of(2021, 6, 18));
