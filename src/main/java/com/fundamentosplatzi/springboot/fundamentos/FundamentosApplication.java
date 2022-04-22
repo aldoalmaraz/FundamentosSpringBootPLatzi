@@ -84,7 +84,7 @@ private final Log LOGGER= LogFactory.getLog(FundamentosApplication.class);
 		userRepository.findByNameLikeOrderByIdDesc("%Marco%").stream()
 				.forEach(user -> LOGGER.info("USUARIO ENCONTRADO CON LIKE Y ORDENADO: "+user));
 
-
+LOGGER.info("APARTIR DEL NAMED PARAMETER ES:"+ userRepository.getALLByBirthDateAndEmail(LocalDate.of(2021, 3, 13),"john@domain.com").orElseThrow(()-> new RuntimeException("NO SE ENCONTRO EL USUARIO  A PARTIR DEL NAME PARAMETER")));
 
 	}
 
