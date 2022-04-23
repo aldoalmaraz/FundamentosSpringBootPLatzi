@@ -26,6 +26,10 @@ public class User {
     @JsonManagedReference
     private List<Post> posts=new ArrayList<>();
 
+    public User(Long id) {
+        this.id=id;
+    }
+
     public Long getId() {
         return id;
     }
