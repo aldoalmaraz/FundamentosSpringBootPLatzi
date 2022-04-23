@@ -38,12 +38,13 @@ users.stream().peek(user -> LOG.info("Usuario insertado " + user))
     }
 
     public User update(User newUser, Long id) {
-         userRepository.findById(id)
+         return userRepository.findById(id)
                 .map(user -> {
                     user.setEmail(newUser.getEmail());
                     user.setBirthdate(newUser.getBirthdate());
                     user.setName(newUser.getName());
                     return userRepository.save(user);  // guardar la entidad ya mapeada con esos valores
-                });
+                }
+                ).get();
     }
 }
