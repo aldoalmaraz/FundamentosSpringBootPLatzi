@@ -68,14 +68,29 @@ private final Log LOGGER= LogFactory.getLog(FundamentosApplication.class);
 	private void saveWithErrorTransactional(){
 		User test1 =new User("Test1Transactional1","TestTransactional1@dominian.com", LocalDate.now());
 		User test2 =new User("Test2Transactional2","TestTransactional2@dominian.com", LocalDate.now());
-		User test3 =new User("Test3Transactional3","TestTransactional3@dominian.com", LocalDate.now());
+		User test3 =new User("Test3Transactional3","TestTransactional1@dominian.com", LocalDate.now());
 		User test4 =new User("Test4Transactional4","TestTransactional4@dominian.com", LocalDate.now());
 
 		List <User> users = Arrays.asList(test1,test2,test3,test4);
-
+try{
 		userService.saveTransactional(users);
-		userService.getAllUsers().stream().forEach(user -> LOGGER.info("Este es el usuario dentro del metodo transaccional "+user));
+
+	}catch (Exception e){
+LOGGER.error("Esta es una exception dentro del metodo transaccional "+e);
+
+
+}	userService.getAllUsers().stream().forEach(user -> LOGGER.info("Este es el usuario dentro del metodo transaccional "+user));
+
+
+
+
 	}
+
+
+
+
+
+
 	private void getInformationJpqlFromUser(){
 	/*LOGGER.info("USUARIO CON EL METODO FINDBYUSEREMAIL: " +
 			userRepository.findByUserEmail("john@domain.com")
